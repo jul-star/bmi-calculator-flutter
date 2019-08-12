@@ -37,30 +37,15 @@ class _InputPageState extends State<InputPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Expanded(
-                  child: TopRowItem(Gender.male),
-                ),
-                Expanded(
-                  child: TopRowItem(Gender.female),
-                ),
-              ],
-            ),
+            child: rowItems(TopRowItem(Gender.male), TopRowItem(Gender.female)),
           ),
           Expanded(
             flex: 2,
             child: CentralWidget(),
           ),
           Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Expanded(child: BottomRowItem(Measure.weight)),
-                Expanded(child: BottomRowItem(Measure.height)),
-              ],
-            ),
+            child: rowItems(
+                BottomRowItem(Measure.weight), BottomRowItem(Measure.height)),
           ),
         ],
       ),
@@ -72,6 +57,20 @@ class _InputPageState extends State<InputPage> {
           },
         ),
       ),
+    );
+  }
+
+  Row rowItems(Widget w1, Widget w2) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Expanded(
+          child: w1,
+        ),
+        Expanded(
+          child: w2,
+        ),
+      ],
     );
   }
 }
