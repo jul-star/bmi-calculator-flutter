@@ -3,6 +3,8 @@ import 'Types.dart';
 import 'BottomRowItem.dart';
 import 'CentralWidget.dart';
 import 'TopRowItem.dart';
+import 'ReusableCard.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() => runApp(BMICalculator());
 
@@ -21,12 +23,32 @@ class BMICalculator extends StatelessWidget {
   }
 }
 
+const Color activeCardColour = Color(0xFF00ffff);
+const Color inactiveCardColour = Color(0x1F00ff01);
+Color maleColor = activeCardColour;
+Color femaleColor = inactiveCardColour;
+Color centerColour = activeCardColour;
+Color weightColour = activeCardColour;
+Color heightColour = activeCardColour;
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
+  void UpdateColor(Gender pressed) {
+    setState(() {
+      if (pressed == Gender.male) {
+        maleColor = activeCardColour;
+        femaleColor = inactiveCardColour;
+      } else {
+        maleColor = inactiveCardColour;
+        femaleColor = activeCardColour;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,15 +59,30 @@ class _InputPageState extends State<InputPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-            child: rowItems(TopRowItem(Gender.male), TopRowItem(Gender.female)),
+            child: rowItems(
+                ReusableCard(
+                    colour: maleColor,
+                    cardChild: TopRowItem(
+                        callback: this.UpdateColor, gender: Gender.male)),
+                ReusableCard(
+                    colour: femaleColor,
+                    cardChild: TopRowItem(
+                        callback: this.UpdateColor, gender: Gender.female))),
           ),
           Expanded(
             flex: 2,
-            child: CentralWidget(),
+            child:
+                ReusableCard(colour: centerColour, cardChild: CentralWidget()),
           ),
           Expanded(
             child: rowItems(
-                BottomRowItem(Measure.weight), BottomRowItem(Measure.height)),
+              ReusableCard(
+                  colour: weightColour,
+                  cardChild: BottomRowItem(Measure.weight)),
+              ReusableCard(
+                  colour: heightColour,
+                  cardChild: BottomRowItem(Measure.height)),
+            ),
           ),
         ],
       ),

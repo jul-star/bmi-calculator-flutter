@@ -15,13 +15,6 @@ class _BottomRowItemState extends State<BottomRowItem> {
   @override
   Widget build(BuildContext context) {
     String title = (measure == Measure.height ? 'heigth' : 'age');
-    return Container(
-      decoration: BoxDecoration(
-          color: Color(0x501DFA1A), borderRadius: BorderRadius.circular(10.0)),
-      margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-      child: SafeArea(
-        child: Text(title),
-      ),
-    );
+    return Container();
   }
 }

@@ -1,32 +1,52 @@
 import 'Types.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TopRowItem extends StatefulWidget {
-  TopRowItem(this.gender);
+  TopRowItem({this.callback, this.gender});
+  final Function(Gender) callback;
   final Gender gender;
   @override
-  _TopRowItemState createState() => _TopRowItemState(gender);
+  _TopRowItemState createState() => _TopRowItemState();
 }
 
 class _TopRowItemState extends State<TopRowItem> {
-  _TopRowItemState(this.gender);
-  Gender gender;
   @override
   Widget build(BuildContext context) {
-    String title = (gender == Gender.male ? 'male' : 'female');
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: Color(0xFF1DF11E),
-      ),
-      margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-      child: Center(
-        child: Text(title),
+    String title = (widget.gender == Gender.male ? 'Male' : 'Female');
+    IconData genderIcon = (widget.gender == Gender.male
+        ? FontAwesomeIcons.mars
+        : FontAwesomeIcons.venus);
+    return FlatButton(
+      splashColor: Color(0xAA121314),
+      onPressed: () => TopRowItemPressed(),
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              genderIcon,
+              size: 30.0,
+            ),
+            SizedBox(
+              height: 15.0,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                fontFamily: 'Arrial',
+                fontSize: 18.0,
+                color: Color(0xFF8D8E98),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  String getText() {
-//    return (gender == Gender.male ? 'male' : 'female');
+  Gender TopRowItemPressed() {
+    print('Gender: $widget.gender');
+    widget.callback(widget.gender);
   }
 }
