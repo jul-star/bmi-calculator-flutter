@@ -1,6 +1,7 @@
 import 'Types.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'Constants.dart';
 
 class TopRowItem extends StatefulWidget {
   TopRowItem({this.callback, this.gender});
@@ -33,11 +34,7 @@ class _TopRowItemState extends State<TopRowItem> {
             ),
             Text(
               title,
-              style: TextStyle(
-                fontFamily: 'Arrial',
-                fontSize: 18.0,
-                color: Color(0xFF8D8E98),
-              ),
+              style: kLabelTextStyle,
             ),
           ],
         ),

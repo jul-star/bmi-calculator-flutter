@@ -4,6 +4,8 @@ import 'BottomRowItem.dart';
 import 'CentralWidget.dart';
 import 'TopRowItem.dart';
 import 'ReusableCard.dart';
+import 'Constants.dart';
+
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() => runApp(BMICalculator());
@@ -23,13 +25,11 @@ class BMICalculator extends StatelessWidget {
   }
 }
 
-const Color activeCardColour = Color(0xFF00ffff);
-const Color inactiveCardColour = Color(0x1F00ff01);
-Color maleColor = activeCardColour;
-Color femaleColor = inactiveCardColour;
-Color centerColour = activeCardColour;
-Color weightColour = activeCardColour;
-Color heightColour = activeCardColour;
+Color maleColor = kActiveCardColour;
+Color femaleColor = kInactiveCardColour;
+Color centerColour = kActiveCardColour;
+Color weightColour = kActiveCardColour;
+Color heightColour = kActiveCardColour;
 
 class InputPage extends StatefulWidget {
   @override
@@ -40,11 +40,11 @@ class _InputPageState extends State<InputPage> {
   void UpdateColor(Gender pressed) {
     setState(() {
       if (pressed == Gender.male) {
-        maleColor = activeCardColour;
-        femaleColor = inactiveCardColour;
+        maleColor = kActiveCardColour;
+        femaleColor = kInactiveCardColour;
       } else {
-        maleColor = inactiveCardColour;
-        femaleColor = activeCardColour;
+        maleColor = kInactiveCardColour;
+        femaleColor = kActiveCardColour;
       }
     });
   }
@@ -80,8 +80,7 @@ class _InputPageState extends State<InputPage> {
                   colour: weightColour,
                   cardChild: BottomRowItem(Measure.weight)),
               ReusableCard(
-                  colour: heightColour,
-                  cardChild: BottomRowItem(Measure.height)),
+                  colour: heightColour, cardChild: BottomRowItem(Measure.age)),
             ),
           ),
         ],
