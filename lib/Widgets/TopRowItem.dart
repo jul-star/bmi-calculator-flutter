@@ -1,7 +1,7 @@
-import 'Types.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'Constants.dart';
+import 'package:bmi_calculator/Types.dart';
+import 'package:bmi_calculator/Constants.dart';
 
 class TopRowItem extends StatefulWidget {
   TopRowItem({this.callback, this.gender});

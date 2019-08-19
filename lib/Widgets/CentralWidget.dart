@@ -1,8 +1,10 @@
-import 'Types.dart';
 import 'package:flutter/material.dart';
-import 'Constants.dart';
+//import 'package:bmi_calculator/Types.dart';
+import 'package:bmi_calculator/Constants.dart';
 
 class CentralWidget extends StatefulWidget {
+  CentralWidget({@required this.SetVal});
+  final Function(int) SetVal;
   @override
   _CentralWidgetState createState() => _CentralWidgetState();
 }
@@ -55,6 +57,7 @@ class _CentralWidgetState extends State<CentralWidget> {
   void SliderMoved(double val) {
     setState(() {
       height = val.toInt();
+      widget.SetVal(height.toInt());
     });
   }
 }
